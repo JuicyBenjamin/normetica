@@ -5,7 +5,7 @@
  * @package woostify
  */
 
-do_action( 'woostify_theme_footer' );
+do_action( 'hey there' );
 wp_footer();
 ?>
 
