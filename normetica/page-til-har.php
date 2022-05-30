@@ -71,7 +71,7 @@ hej();
 //  let categories;
 //  let filterRet;
 
- const dbUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/produkt";
+ const dbUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/haar";
 //  const catUrl = "https://helbo.one/kea/tema_09/passion-wp/wp-json/wp/v2/categories";
 
  async function getJson(){
