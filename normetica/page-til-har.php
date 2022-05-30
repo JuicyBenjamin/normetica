@@ -49,7 +49,7 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 				endwhile;
 				?>
-				<h1>Global Medborgerskab</h1>
+				<h1>Produkter til hår</h1>
 <section class="retcontainer">
 </section>
 			</main>
