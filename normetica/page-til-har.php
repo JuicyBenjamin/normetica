@@ -22,9 +22,10 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 	<template>
     <article>
-    <img src="" alt="">
+         <h2></h2>
+
     <div>
-        <h2></h2>
+		   <img src="" alt="">
         <p class="tekst"></p>
         <p class="pris"></p>
         </div>
