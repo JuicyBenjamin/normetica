@@ -4,9 +4,3 @@ Template: woostify
 Version: 1.0.5
 
 */
-
-/* Top Bar styling */
- .topbar-item .topbar-left {
-   display: flex;
-   align-items: center;
- }
