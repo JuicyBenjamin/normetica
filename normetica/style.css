@@ -4,3 +4,10 @@ Template: woostify
 Version: 1.0.5
 
 */
+ 
+#norm_topbar {
+  display: flex;
+  align-items: center;
+	padding:0.5rem;
+	gap: 0.5rem;
+ }
