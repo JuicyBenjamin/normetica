@@ -12,12 +12,24 @@
 
 get_header();
 
+
 if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) && woostify_elementor_has_location( 'single' ) ) {
 	$frontend = new \Elementor\Frontend();
 	echo $frontend->get_builder_content_for_display( get_the_ID(), true ); // phpcs:ignore
 	wp_reset_postdata();
 } else {
 	?>
+
+	<template>
+    <article>
+    <img src="" alt="">
+    <div>
+        <h2></h2>
+        <p class="tekst"></p>
+        <p class="pris"></p>
+        </div>
+        </article>
+	</template>
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main">
 				<?php
@@ -37,11 +49,59 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 				endwhile;
 				?>
+				<h1>Global Medborgerskab</h1>
+<section class="retcontainer">
+</section>
 			</main>
 		</div>
 	<?php
 
-	do_action( 'woostify_sidebar' );
+	do_action( 'woostify_sidebar' ); 
 }
 
-get_footer();
+get_footer(); ?>
+<script>
+function hej(){
+ console.log("hej");
+}
+
+hej();
+ let opskrifter;
+//  let categories;
+//  let filterRet;
+
+ const dbUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/produkt";
+//  const catUrl = "https://helbo.one/kea/tema_09/passion-wp/wp-json/wp/v2/categories";
+
+ async function getJson(){
+     const data = await fetch(dbUrl);
+    //  const catdata = await fetch(catUrl);
+
+     opskrifter = await data.json();
+    //  categories = await catdata.json();
+
+     console.log(opskrifter);
+     visMad();
+ }
+
+
+
+ function visMad(){
+     let temp = document.querySelector("template");
+     let container = document.querySelector(".retcontainer");
+     container.innerHTML = "";
+     opskrifter.forEach(opskrift => {
+        //  if (opskrift.categories.includes(parseInt(filterRet))){
+         let klon = temp.cloneNode(true).content;
+         klon.querySelector("h2").textContent = opskrift.title.rendered;
+         klon.querySelector("img").src = opskrift.billede.guid;
+         klon.querySelector(".tekst").textContent = opskrift.beskrivelse;
+        //  klon.querySelector("article").addEventListener("click", ()=> {location.href = opskrift.link; })
+         container.appendChild(klon);
+            //  }
+     })
+
+ }
+
+ getJson();
+</script>
