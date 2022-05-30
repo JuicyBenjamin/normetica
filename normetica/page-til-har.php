@@ -96,7 +96,7 @@ hej();
          let klon = temp.cloneNode(true).content;
          klon.querySelector("h2").textContent = opskrift.title.rendered;
          klon.querySelector("img").src = opskrift.billede.guid;
-         klon.querySelector(".tekst").textContent = opskrift.beskrivelse;
+         klon.querySelector(".tekst").textContent = opskrift.pris;
         //  klon.querySelector("article").addEventListener("click", ()=> {location.href = opskrift.link; })
          container.appendChild(klon);
             //  }
