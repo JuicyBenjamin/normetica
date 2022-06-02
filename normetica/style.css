@@ -11,3 +11,77 @@ Version: 1.0.0
 	padding:0.5rem;
 	gap: 0.5rem;
  }
+
+/* Forside video */
+.front-page {
+  height: 100vh;
+}
+main .content h1,
+main video {
+  grid-row: 1;
+  grid-column: 1;
+  grid-area: 1 / 1;
+  text-align: center;
+}
+
+
+
+main .content h1 {
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 2px red;
+  padding: 2rem;
+  z-index: 1;
+  position: absolute;
+}
+
+.stroke-behind {
+  paint-order: stroke color;
+}
+
+.video-container {
+  background-color: black;
+  position: absolute;
+  top: 132px;
+  left: 0;
+  right: 0;
+}
+
+main video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.produkt-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.produkt-container article {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1rem;
+  margin-top: 0px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.produkt-billede {
+
+}
+
+.tekst {
+
+}
+
+.pris {
+
+}
+
+.divider {
+  display: block;
+  height: 5rem;
+}

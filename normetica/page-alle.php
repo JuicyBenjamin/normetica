@@ -25,7 +25,7 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
          <h2></h2>
 
     <div>
-		   <img src="" alt="">
+		   <img class="produkt-billede" src="" alt="">
         <p class="tekst"></p>
         <p class="pris"></p>
         </div>
@@ -50,11 +50,12 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 				endwhile;
 				?>
-				<h1>Produkter til hår</h1>
-<section class="retcontainer">
+				<h1>Alle Produkter</h1>
+<section  class="produkt-container">
 </section>
 			</main>
 		</div>
+		<div class="divider"></div>
 	<?php
 
 	do_action( 'woostify_sidebar' ); 
@@ -89,12 +90,12 @@ hej();
 
  function visMad(){
      let temp = document.querySelector("template");
-     let container = document.querySelector(".retcontainer");
+     let container = document.querySelector(".produkt-container");
      container.innerHTML = "";
      opskrifter.forEach(opskrift => {
         //  if (opskrift.categories.includes(parseInt(filterRet))){
          let klon = temp.cloneNode(true).content;
-         klon.querySelector("h2").textContent = opskrift.title.rendered;
+         klon.querySelector("h2").innerHTML = opskrift.title.rendered;
          klon.querySelector("img").src = opskrift.billede.guid;
          klon.querySelector(".tekst").textContent = opskrift.pris;
         //  klon.querySelector("article").addEventListener("click", ()=> {location.href = opskrift.link; })
