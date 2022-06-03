@@ -21,7 +21,7 @@ get_header(); ?>
           autoplay
           loop
           muted
-          src="https://vinterfjell.dk/kea/10_eksamen/normetica/wp-content/uploads/2022/05/forsidevideo.mp4"
+          src="https://vinterfjell.dk/kea/10_eksamen/normetica/wp-content/uploads/2022/06/splashvideo_test.webm"
         ></video>
   </div>
   <section class="section-produkter-og-services">
