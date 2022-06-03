@@ -22,12 +22,14 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 <template>
   <article>
-    <h2></h2>
-    <div>
-		  <img class="produkt-billede" src="" alt="">
-      <p class="tekst"></p>
-      <p class="pris"></p>
-    </div>
+		<div class="billede-container">
+			<img class="produkt-billede" src="" alt="">
+		</div>
+		<div class="beskrivelse-container">
+			<h2></h2>
+			<p class="pris"></p>
+			<button>Læs Mere</button>
+		</div>
   </article>
 </template>
 
@@ -51,7 +53,8 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 		endwhile;
 		?>
 		<h1>Alle Produkter</h1>
-		<section  class="produkt-container">
+		<div class="knapContainer"></div>
+		<section class="produkt-container">
 		</section>
 	</main>
 </div>
@@ -64,32 +67,63 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 get_footer(); ?>
 <script>
+	document.addEventListener("DOMContentLoaded", getJson);
+
 	let produkter;
+	let filter = "alle";
 
 	const dbUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/produkt";
+	const catUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/categories";
 
 	async function getJson(){
   	const data = await fetch(dbUrl);
+		const catData = await fetch(catUrl);
 		produkter = await data.json();
-    console.log(produkter);
+		knapKategori = await catData.json();
+
+		tilfojKnapper();
     visProdukter();
- }
+ 	}
+	
+	function tilfojKnapper() {
+		let knapContainer = document.querySelector(".knapContainer");
+		knapKategori.forEach((kategori) => {
+			if (kategori.id === 1) {
+				knapContainer.innerHTML += `<button class="valgt filter" data-kategori="${kategori.id}">${kategori.name}</button>`
+			} else {
+				knapContainer.innerHTML += `<button class="filter" data-kategori="${kategori.id}">${kategori.name}</button>`;
+			}
+		})
+		const btnEvent = () => {
+			document.querySelectorAll(".knapContainer button").forEach(btn => {
+				btn.addEventListener("click", filtrerProdukter)
+			})
+		}
+		btnEvent()
+		return
+	}
+
+	function filtrerProdukter() {
+			filter = this.dataset.kategori;
+			document.querySelector(".valgt").classList.remove("valgt");
+			this.classList.add("valgt");
+			visProdukter();
+	}
 
 	function visProdukter(){
   	let temp = document.querySelector("template");
     let container = document.querySelector(".produkt-container");
     container.innerHTML = "";
     produkter.forEach(produkt => {
-    //  if (produkt.categories.includes(parseInt(filterRet))){
-    	let klon = temp.cloneNode(true).content;
-      klon.querySelector("h2").innerHTML = produkt.title.rendered;
-      klon.querySelector("img").src = produkt.billede.guid;
-      klon.querySelector(".tekst").textContent = produkt.pris;
-      klon.querySelector("article").addEventListener("click", ()=> {location.href = produkt.link; })
-      container.appendChild(klon);
-        //  }
+    	if (produkt.categories.includes(parseInt(filter)) || filter == "alle") {
+				let klon = temp.cloneNode(true).content;
+				klon.querySelector("h2").innerHTML = produkt.title.rendered;
+				klon.querySelector("img").src = produkt.billede.guid;
+				klon.querySelector(".pris").textContent = produkt.pris;
+				klon.querySelector("article").addEventListener("click", ()=> {location.href = produkt.link; })
+				container.appendChild(klon);
+      }
     })
 
  }
-	getJson();
 </script>
