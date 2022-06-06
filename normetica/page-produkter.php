@@ -67,6 +67,7 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 get_footer(); ?>
 <script>
+	// En event listener som checker at hele siden er loaded og først derefter starter den første funktion getJson
 	document.addEventListener("DOMContentLoaded", getJson);
 
 	let produkter;
@@ -75,6 +76,8 @@ get_footer(); ?>
 	const dbUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/produkt";
 	const catUrl = "https://vinterfjell.dk/kea/10_eksamen/normetica/wp-json/wp/v2/categories";
 
+	// Funktion som indhenter JSON data fra wordpress rest api
+	// Data der bliver indhentet er alle produkterne og alle kategorierne
 	async function getJson(){
   	const data = await fetch(dbUrl);
 		const catData = await fetch(catUrl);
@@ -85,6 +88,11 @@ get_footer(); ?>
     visProdukter();
  	}
 	
+	// Funktion som tilføjer en knap til filtrering for hver kategori som eksisterer på sitet. 
+	// 1) Finder container til knapperne vha queryselector på klassenavnet
+	// 2) Et forEach loop, som tilføjer en knap for hver kategori med data-kategori attributten lig kategori id og knappens indhold lig navnet på kategorien
+	// 3) Vha en if statement checker den om kategori id er lig 1 (Dette er id'et for alle), da denne skal have en ekstra klasse kaldet "valgt", hvis id'et ikke er 1 gør den ovenstående.
+	// 4) Tilføjer en eventlistener på alle knapperne som lytter efter klik, på klik starter den filtrerProdukter funktionen.
 	function tilfojKnapper() {
 		let knapContainer = document.querySelector(".knapContainer");
 		knapKategori.forEach((kategori) => {
@@ -95,6 +103,8 @@ get_footer(); ?>
 			}
 		})
 		const btnEvent = () => {
+			// I stedet for at lave en document.querySelector på hver knap til filtrering, bruger vi en document.querySelectorAll som laver en array af alle som matcher.
+			// Dette gør vi dels for at minimere gentagne kode, men også så antallet af kategorier kan ændres, uden det vil påvirke funktionaliteten af sitet.
 			document.querySelectorAll(".knapContainer button").forEach(btn => {
 				btn.addEventListener("click", filtrerProdukter)
 			})
@@ -103,6 +113,9 @@ get_footer(); ?>
 		return
 	}
 
+	// En funktion som ændrer det valgte filter afhængig af hvilken knap som er valgt.
+	// Derefter vælger den knappen som har class "valgt" (Det starter med at være knappen alle se evt linje 100) og fjerner den class.
+	// Så tilføjer den class "valgt" på den knap som brugeren har trykket på og starter til sidst funktionen visProdukter
 	function filtrerProdukter() {
 			filter = this.dataset.kategori;
 			document.querySelector(".valgt").classList.remove("valgt");
@@ -110,6 +123,7 @@ get_footer(); ?>
 			visProdukter();
 	}
 
+	// Funktionen som viser indholdet af produkter på siden og mere specifikt kun viser indholdet for den valgte kategori.
 	function visProdukter(){
   	let temp = document.querySelector("template");
     let container = document.querySelector(".produkt-container");

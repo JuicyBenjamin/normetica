@@ -254,9 +254,11 @@ button:hover, .beskrivelse-container .button:hover {
   .section-book-tid .beskrivelse-container,
   .section-book-tid .billede-container,
   .single-produkt-container > div {
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: auto;
   }
+  
 }
 
 @media (max-width: 560px) {
