@@ -1,7 +1,7 @@
 /* 
 Theme Name: normetica
 Template: woostify
-Version: 1.0.0
+Version: 1.0.1
 
 */
  
@@ -32,12 +32,15 @@ main .content h1 {
   position: absolute;
 }
 
+.relative-container {
+  display: relative;
+}
+
 .video-container {
   background-color: black;
-  position: absolute;
-  top: 132px;
-  left: 0;
-  right: 0;
+  margin-top: -3.5rem;
+  margin-left: -10rem;
+  margin-right: -10rem;
 }
 
 main video {
@@ -48,18 +51,40 @@ main video {
 }
 
 .section-produkter-og-services {
+  margin-left: -10rem;
+  margin-right: -10rem;
+  background-color: #F1EFEA;
+}
+
+.produkter-og-services-container {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
   justify-content: center;
   gap: 1rem;
   margin-bottom: 10rem;
-  background-color: #F1EFEA;
 }
 
-.section-produkter-og-services .beskrivelse-container {
+.section-produkter-og-services .produkter-og-services-container .beskrivelse-container {
   width: 50%;
   height: 20rem;
   justify-content: center;
   margin: 10rem 4rem;
+}
+
+.section-book-tid {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: auto;
+}
+
+.section-book-tid > img,
+.section-book-tid > div  {
+  width: 50%;
+  height: auto;
+  font-size: 1.5rem;
+  color: #4E4E4E;
 }
 
 .produkt-container {
@@ -70,7 +95,6 @@ main video {
 
 .produkt-container article {
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  padding: 1rem;
   margin-top: 0px !important;
   display: flex;
   flex-direction: column;
@@ -92,6 +116,7 @@ main video {
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  padding: 2rem;
 }
 
 .beskrivelse-container h2 {
@@ -136,7 +161,7 @@ main video {
 }
 
 .single-produkt-heading {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #4E4E4E;
 }
 
@@ -152,6 +177,11 @@ main video {
   height: 5rem;
 }
 
+.divider-fp {
+  display: block;
+  height: 160vh;
+}
+
 .knapContainer {
   display: flex;
   justify-content: center;
@@ -162,9 +192,10 @@ main video {
   border-radius: 3px;
 }
 
-button {
+button, .beskrivelse-container .button {
   padding: 0.5rem 2rem;
   align-self: center;
+  color: #4E4E4E;
   background-color: #FFFFFF;
   border-radius: 3px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -172,11 +203,77 @@ button {
   transition: background-color 0.5s, color 0.5s;
 }
 
-button:hover {
+button:hover, .beskrivelse-container .button:hover {
   background-color: rgba(65,62,89,1);
   color: white;
 }
 .valgt {
   background-color: rgba(65,62,89,1);
   color: white;
+}
+
+@media (max-width: 991px) {
+  .relative-container {
+    display: none;
+  }
+ 
+  main .content h1 {
+    background-color: rgba(0,0,0, 0.4);
+    text-align: center;
+    height: 50vh;
+    margin: auto;
+  }
+
+  main .content {
+    background-image: url(https://vinterfjell.dk/kea/10_eksamen/normetica/wp-content/uploads/2022/06/video_screenshot.webp);
+    height: 50vh;
+    background-size: cover; 
+    background-position: 80%;
+    margin-top: -3.5rem;
+    margin-left: -1.1rem;
+    margin-right: -1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width:1200px) {
+  .section-produkter-og-services{
+    margin: 0rem;
+    margin-top: 1rem;
+  }
+  .section-produkter-og-services .produkter-og-services-container, .section-book-tid {
+  flex-direction: column;
+  }
+  .section-produkter-og-services .produkter-og-services-container .beskrivelse-container,
+  .section-book-tid .beskrivelse-container,
+  .section-book-tid .billede-container {
+  width: 100%;
+  margin: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  main .content h1 {
+    font-size: 3rem;
+  }
+  .divider-fp {
+  height: 120vh;
+}
+}
+
+@media (max-width: 500px) {
+  main .content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .knapContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 0.5rem;
+  }
+  .knapContainer > button {
+    min-width: 100%;
+  }
 }
