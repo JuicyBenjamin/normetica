@@ -117,7 +117,7 @@ get_footer(); ?>
     produkter.forEach(produkt => {
     	if (produkt.categories.includes(parseInt(filter)) || filter == "alle") {
 				let klon = temp.cloneNode(true).content;
-				klon.querySelector("h2").innerHTML = produkt.title.rendered;
+				klon.querySelector("h2").innerHTML = `${produkt.brand} <br> ${produkt.navn}`;
 				klon.querySelector("img").src = produkt.billede.guid;
 				klon.querySelector(".pris").textContent = produkt.pris;
 				klon.querySelector("article").addEventListener("click", ()=> {location.href = produkt.link; })

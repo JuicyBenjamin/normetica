@@ -43,7 +43,7 @@ get_footer(); ?>
 	function visProdukter(){
     document.querySelector(".single-produkt-heading").innerHTML = produkt.title.rendered;
     document.querySelector(".single-produkt-image").src = produkt.billede.guid;
-    document.querySelector(".single-produkt-beskrivelse").textContent = produkt.beskrivelse;
+    document.querySelector(".single-produkt-beskrivelse").innerHTML = produkt.beskrivelse;
     document.querySelector(".single-produkt-pris").textContent = produkt.pris;
   }
 	getJson();
