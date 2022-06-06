@@ -52,7 +52,7 @@ if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_loca
 
 		endwhile;
 		?>
-		<h1>Alle Produkter</h1>
+		<h1 class="center">Produkter</h1>
 		<div class="knapContainer"></div>
 		<section class="produkt-container">
 		</section>

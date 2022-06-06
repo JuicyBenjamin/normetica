@@ -212,6 +212,10 @@ button:hover, .beskrivelse-container .button:hover {
   color: white;
 }
 
+.center {
+  text-align: center;
+}
+
 @media (max-width: 991px) {
   .relative-container {
     display: none;
@@ -241,12 +245,15 @@ button:hover, .beskrivelse-container .button:hover {
     margin: 0rem;
     margin-top: 1rem;
   }
-  .section-produkter-og-services .produkter-og-services-container, .section-book-tid {
+  .section-produkter-og-services .produkter-og-services-container, 
+  .section-book-tid,
+  .single-produkt-container {
   flex-direction: column;
   }
   .section-produkter-og-services .produkter-og-services-container .beskrivelse-container,
   .section-book-tid .beskrivelse-container,
-  .section-book-tid .billede-container {
+  .section-book-tid .billede-container,
+  .single-produkt-container > div {
   width: 100%;
   margin: auto;
   }
